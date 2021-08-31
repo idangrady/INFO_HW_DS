@@ -1,0 +1,205 @@
+\section{Pannenkoeken}
+
+
+\begin{lstlisting}[caption=Insert Sort variant, escapechar=|]
+A = new Array;  |\label{line:first}|
+sign = Sign(A[1] - A[0]);
+for ( i = 2; i < A.Length; i++) |\label{line:for}|
+{
+    // Skip any next number that is already in a sorted order
+    new_sign = Sign(A[i] - A[i - 1]); |\label{line:six}|
+    if (new_sign != 0 && new_sign != sign) |\label{line:comp-sign}|
+    {
+        // A incorrect order has been found.
+        if (sign == 1 && (A[i] <= A[0] || A[i] >= A[i-1]) || sign == -1 && (A[i] >= A[0] || A[i] <= A[i - 1])) |\label{line:comp}|
+        {
+            // If number is a new highest or lowest, only one flip is required. 
+            // In the worst case, the first two numbers A[0] and A[1] are the lowest and highest in the A.
+            A = Flip(A, i);
+            total_flips++;
+            sign = new_sign;
+        } else {
+            // Binary search
+            left = 0;
+            right = A.Length - 1;
+            reversed = (A[0] - A[A.Length - 1] > 0);
+            while (right > left + 1)
+            {
+                // Bit shift is the same as deviding by 2. Saves a little time
+                int mid = (left + right) >> 1;
+
+                // Check if value is left or right.
+                if (A[i] < arr[mid])
+                {
+                    if (reversed) { left = mid; } else { right = mid; } 
+                } else {
+                    if (reversed) { right = mid; } else { left = mid; }
+                }
+            }
+            // Get position of the number closest to A[i] between 0 and i. 
+            pos = left; 
+
+            // Place item 'i' at pos.
+            A = Flip(A, i + 1);
+            A = Flip(A, i - pos + 1);
+            A = Flip(A, i - pos);
+
+            sign = new_sign;
+            total_flips += 3;
+        }
+    }
+}
+\end{lstlisting}
+
+In the best case, the array is already sorted and the comparisons would be $O(n)$ to check at line \ref{line:comp-sign} if any number is not ascending or descending as the previous two numbers. In this case the Flips would be 0.
+
+In the worst case, the array is unsorted and the first two values are the min and max bound. Meaning the comparison on line \ref{line:comp} will always be false. In this case, the total flips would be $3*n$, since Flip() is called three times.
+
+If we assume that a $Flip()$ takes $O(1)$ time, then we can deduce that the time complexity from this algorithm would be O(n \log(n)). 
+Normally Insertion Sort would be $O(n^2)$ because of the swaps, but in this case no iterative swaps are executed, only 3 $Flip()$'s which are $O(1)$.
+
+Lets assume that each operation or comparison takes Ci time. Each row of the algorithm above has a number, counting down in descending order, so line \ref{line:first} would be C1, the for-loop at line \ref{line:for} would be C3a, C3b and C3c and at line \ref{line:six} would be C6.
+
+The time it takes to run this algorithm in the worst case would be:
+
+\begin{align*}
+C1 + C2 + C3a + (n+1)*C3b + \\
+n(C3c + C6 + C7 + C10 + C19 + C20 + C21 + \\
+2\log(n) * (C22 + C25 + C28 + 0.5*C30 + 0.5*C32) + \\
+C36 + C39 + C40 + C41 + C43 + C44)
+\end{align*}
+
+Total comparisons will be  $n* \log_{2}(n)$
+
+This is equal to $O(n*\log(n))$
+Worst total flips would be $n*C39 + n*C40 + n*C41$ which would be $3*n$
+
+
+\vspace{15mm}
+
+\begin{lstlisting}[caption=Selection Sort variant, escapechar=|]
+for (int i = 0; i < input.Length; i++) |\label{line2:for}|
+{
+    // Array 0 to i has already been sorted
+    int lowest = i;
+    int lowest_val = input[i];
+    for(int j = i; j<input.Length; j++)
+    {
+        if (input[j] < lowest_val)
+        {
+            lowest = j;
+            lowest_val = input[j];
+        }
+    }
+
+    input = flipIntArrayAt(input, lowest);
+    input = flipIntArrayAt(input, lowest + 1);
+
+    total_flips += 2;
+}
+\end{lstlisting}
+
+Vanwege de for-loop op lijn \ref{line2:for} zal het aantal flips hier altijd $2*n$ zijn.
+Maar er zit een doubele for-loop in, dus als we aannemen dat $Flip()$ een tijd van $O(1)$ heeft, 
+dan zal het algoritme $O(n^2)$ snel zijn. 
+
+
+\vspace{15mm}
+
+\begin{lstlisting}[caption=Quick Sort Variant, escapechar=|]
+pannenkoekenQS(A, low, high)
+{
+    total_flips = 0;
+    if (low < high)
+    {
+        pivot_pos, added_flips;
+        (A, pivot_pos, added_flips) = pannenkoekenQSPart(A, low, high);
+        total_flips += added_flips;
+
+        (A, added_flips) = pannenkoekenQS(A, low, pivot_pos - 1);
+        total_flips += added_flips;
+        (A, added_flips) = pannenkoekenQS(A, pivot_pos + 1, high);
+        total_flips += added_flips;
+    }
+
+    return (A, total_flips);
+}
+
+pannenkoekenQSPart(A,  low,  high) |\label{line3:pannenkoekenQSPart}|
+{
+     pivot = A[low];
+     left_wall = low;
+     total_flips = 0;
+     add_flips;
+
+    for ( i = low + 1; i <= high; i++) 
+    {
+        if (A[i] < pivot) {
+            (A, add_flips) = pannenkoekenSwap(A, i, left_wall + 1);
+            left_wall++;
+            total_flips += add_flips;
+        }
+    }
+
+    (A, add_flips) = pannenkoekenSwap(A, low, left_wall);
+    total_flips += add_flips;
+
+    return (A, left_wall, total_flips);
+}
+
+pannenkoekenSwap(A,  pos1,  pos2)
+{
+    if (pos1 == pos2)
+    {
+        return (A, 0);
+    }
+    else
+    {
+        // Get left and right position
+        left = (pos1 < pos2) ? pos1 : pos2;
+        right = (pos1 < pos2) ? pos2 : pos1;
+
+        // Swap two positions
+        A = Flip(A, left + 1);
+        A = Flip(A, right + 1);
+        A = Flip(A, right);
+        A = Flip(A, right - 1);
+        A = Flip(A, right);
+        A = Flip(A, left + 1);
+
+        return (A, 6);
+    }
+}
+\end{lstlisting}
+
+De hoeveelheid keer de functie op lijn \ref{line3:pannenkoekenQSPart} wordt uitgeroepen is ongeveer everedig met:
+
+\[2*\log_{\frac{4}{3}}(n)\]
+
+Want als we vanuit gaan dat de split gebeurt bij een kwart van elk eind van de array een slechte split is, 
+zal $50\%$ van de tijd een goede split zijn waarbij na de split er een deel over blijft met minder of gelijk aan $3/4$ van het gesplitte array.
+
+$A_n$ is een array n keer gesplit. 
+Een snelle split: $A_i <= 3/4 * (A_i_-_1)$
+Dus voor $Q$ snelle splits geldt voor de array grote $<= n*(3/4)^Q$
+
+Het splitten stopt als $n*(3/4)^Q <= 1$
+
+\begin{align*}
+n*(3/4)^Q <= 1  \\
+\Rightarrow \log_{\frac{3}{4}}(1/n) >= Q \\
+\Rightarrow \log_{\frac{4}{3}}(n) >= Q
+\end{align*}
+
+Maar elke split heeft maar een $50\%$ kans om goed te zijn, dus de hoeveelheid splits nodig is:
+
+\begin{align*}
+\log_{\frac{4}{3}}(n) >= 0.5 / Q \\
+\Rightarrow 2 * \log_{\frac{4}{3}}(n) >= Q
+\end{align*}
+
+Dus de vergelijkingen per key is $2*\log_{\frac{4}{3}}(n)$.
+Dat geeft ons: $2n * \log_{\frac{4}{3}}(n)$ wat correspondeerd met $O(n*\log(n))$
+
+
+De formule $2n * \log_{\frac{4}{3}}(n)$ voor waardes van $n > 1$ is altijd kleiner dan $n * \log_{2}(n)$ van Insert Sort, dus als $Flip()$ een $O(1)$ is, dan is Quick Sort beter.

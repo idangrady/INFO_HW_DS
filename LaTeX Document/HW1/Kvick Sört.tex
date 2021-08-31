@@ -1,0 +1,30 @@
+\section{Kvick Sört}
+
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[width=1\textwidth, height=4in] {Kvick Sört IDEA.png}
+  \end{center}
+  \caption{Kvick Sört}
+   \label{fig:kvicksort}
+\end{figure}
+
+(a) 
+Een gerandomiseerde pivotkeuze. Op stap 1 van figuur \ref{fig:kvicksort} wordt er een doppelsteen laten zien. Dit is bedoeld voor het bepalen van een willekeurig nummer. 
+
+\vspace{10mm}
+
+(b) Elke balk wordt vergeleken met de pivot balk, behalve de pivot balk zelf.
+\[ 
+    f(n) = n - 1
+\]
+
+\vspace{10mm}
+
+(c)
+Als dit niet gebeurt, kan het zijn dat blokken met dezelfde lengte omwisselen. Dit kan uiteindelijk fouten geven. Bijvoorbeeld je hebt een array van objecten: $[{2, a}, {4, a}, {4, b}, {3, a}, {1, a}]$ en als je deze wilt sorteren kan het zo zijn dat je ${4, a}$ en ${4, b}$ niet omgewisselt wilt hebben. Als de blokjes op stap 5 van figuur \ref{fig:kvicksort} onderling omwisselen kan het algoritme dus niet zeker van zijn dat de volgorde van zelfde grotte blokken behouden blijft.
+
+\vspace{10mm}
+
+(d)
+Nee, in dit geval moet je kennis hebben over wat een dobbelsteen is, en dat de cijfers 1 tot 6 een volgorde van stappen bepalen, en dat de lengte van elk blokje een verschillende grootte bepaald (wat nog wel redelijk universeel door mensen begrepen kan worden). Je zal ook moeten snappen wat de pijlen betekenen. Ook is het van belang dat je het concept van $n_x$ blokjes moet begrijpen, zodat je weet dat het werkt voor elk hoeveelheid van blokjes, en niet specefiek 8 blokjes van deze grootte.

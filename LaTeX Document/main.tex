@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{wrapfig}. 
+\graphicspath{ {./figures/} }
+
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{codestyle} {
+    backgroundcolor=\color{backcolour},   commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+%"mystyle" code listing set
+\lstset{
+    language=[Sharp]C,
+    style=codestyle
+}
+
+
+
+\title{INFODS HW 1}
+\author{Idan Grady en Simon Oliehoek}
+\date{May 2021}
+
+\begin{document}
+
+\maketitle
+
+\input{HW1/Pannenkoeken}
+\input{HW1/Kvick Sört}
+\input{HW1/Optellen}
+\input{HW1/De Grote Omega}
+\input{HW1/Een zware klus}
+
+\end{document}

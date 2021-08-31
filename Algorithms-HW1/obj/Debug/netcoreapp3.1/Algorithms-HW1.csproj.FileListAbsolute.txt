@@ -1,0 +1,13 @@
+C:\Users\simon\source\repos\Datastructuren\INFODS-hw\Algorithms-HW1\bin\Debug\netcoreapp3.1\Algorithms-HW1.exe
+C:\Users\simon\source\repos\Datastructuren\INFODS-hw\Algorithms-HW1\bin\Debug\netcoreapp3.1\Algorithms-HW1.deps.json
+C:\Users\simon\source\repos\Datastructuren\INFODS-hw\Algorithms-HW1\bin\Debug\netcoreapp3.1\Algorithms-HW1.runtimeconfig.json
+C:\Users\simon\source\repos\Datastructuren\INFODS-hw\Algorithms-HW1\bin\Debug\netcoreapp3.1\Algorithms-HW1.runtimeconfig.dev.json
+C:\Users\simon\source\repos\Datastructuren\INFODS-hw\Algorithms-HW1\bin\Debug\netcoreapp3.1\Algorithms-HW1.dll
+C:\Users\simon\source\repos\Datastructuren\INFODS-hw\Algorithms-HW1\bin\Debug\netcoreapp3.1\Algorithms-HW1.pdb
+C:\Users\simon\source\repos\Datastructuren\INFODS-hw\Algorithms-HW1\obj\Debug\netcoreapp3.1\Algorithms-HW1.csprojAssemblyReference.cache
+C:\Users\simon\source\repos\Datastructuren\INFODS-hw\Algorithms-HW1\obj\Debug\netcoreapp3.1\Algorithms-HW1.AssemblyInfoInputs.cache
+C:\Users\simon\source\repos\Datastructuren\INFODS-hw\Algorithms-HW1\obj\Debug\netcoreapp3.1\Algorithms-HW1.AssemblyInfo.cs
+C:\Users\simon\source\repos\Datastructuren\INFODS-hw\Algorithms-HW1\obj\Debug\netcoreapp3.1\Algorithms-HW1.csproj.CoreCompileInputs.cache
+C:\Users\simon\source\repos\Datastructuren\INFODS-hw\Algorithms-HW1\obj\Debug\netcoreapp3.1\Algorithms-HW1.dll
+C:\Users\simon\source\repos\Datastructuren\INFODS-hw\Algorithms-HW1\obj\Debug\netcoreapp3.1\Algorithms-HW1.pdb
+C:\Users\simon\source\repos\Datastructuren\INFODS-hw\Algorithms-HW1\obj\Debug\netcoreapp3.1\Algorithms-HW1.genruntimeconfig.cache
